@@ -10,7 +10,8 @@ center1 = "https://www.dropbox.com/s/ahuabohmr6pnrg6/center1.zip?dl=1"
 center2 = "https://www.dropbox.com/s/6f5zoqkbucxxy42/center2.zip?dl=1"
 reverse = "https://www.dropbox.com/s/4p7ctzsslgsowv0/reverse.zip?dl=1"
 curve = "https://www.dropbox.com/s/o3dfk8dd3ygx1gl/curve.zip?dl=1"
-urls = [center1, center2, curve, reverse]
+dirt_curve = "https://www.dropbox.com/s/wkx0swwsfz8s4fs/dirt_curve.zip?dl=1"
+urls = [center1, center2, curve, reverse, dirt_curve]
 if not os.path.exists("/opt/data"):
     subprocess.call(["mkdir", "/opt/data"])
 for url in urls:

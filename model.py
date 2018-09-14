@@ -3,17 +3,24 @@ import csv
 lines = []
 # TODO: add data augmentation
 # folder_names = ['center1', 'center2', 'center3', 'reverse', 'recovery', 'curve']
-folder_names = ['center1', 'center2', 'reverse', 'curve']
-division_factor = 1
+folder_names = ['center1', 'center2', 'reverse', 'curve', 'dirt_curve', 'flipped_dirt_curve',]
+division_factor = 3
 for f_name in folder_names:
 # for f_name in folder_names[]:
     with open('/opt/data/{}/driving_log.csv'.format(f_name)) as csvfile:
         reader = csv.reader(csvfile)
         i = 0
         for line in reader:
-            if i%division_factor == 0:
+            if i%division_factor == 0 or f_name == "dirt_curve" or f_name == "flipped_dirt_curve":
                 lines.append(line)
+                # add left and right image
+                adjast_const = 2.
+                left_line = [line[1], *line[1:3], str(float(line[3])+adjast_const), *line[4:]]
+                right_line = [line[2], *line[1:3], str(float(line[3])-adjast_const), *line[4:]]
+                lines.append(left_line)
+                lines.append(right_line)
             i += 1
+        print(f_name, ":", i)
 
 from sklearn.model_selection import train_test_split
 from random import shuffle
@@ -35,7 +42,7 @@ def generator(samples, batch_size):
             images = []
             angles = []
             for line in batch_samples:
-                current_path = "/opt/{}".format("/".join(line[0].split("/")[-4:]))
+                current_path = "/opt/data/{}".format("/".join(line[0].split("/")[-3:]))
                 image = cv2.imread(current_path)
                 images.append(image)
                 angle = float(line[3])
@@ -59,7 +66,7 @@ model.add(Lambda(lambda x: x/127.5-1.))
 model.add(Conv2D(5, (5, 5)))
 model.add(Activation('relu'))
 model.add(Conv2D(10, (5, 5)))
-model.add(Activation('relu')
+model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Flatten())
 model.add(Dense(100))
