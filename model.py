@@ -95,7 +95,7 @@ model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
 
-epochs = 4
+epochs = 5
 model.fit_generator(train_generator,
                     samples_per_epoch=len(train_samples),
                     validation_data=valid_generator,
