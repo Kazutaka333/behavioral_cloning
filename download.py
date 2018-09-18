@@ -1,5 +1,6 @@
 import subprocess
 import os
+
 # center1 = "https://www.dropbox.com/s/7jr9njm7b5ck0oo/center1.tar.gz?dl=1"
 # center2 = "https://www.dropbox.com/s/khow2cd32nuim4o/center2.tar.gz?dl=1"
 # center3 = "https://www.dropbox.com/s/ibiblwu7iwfv7h6/center3.tar.gz?dl=1"
@@ -18,6 +19,7 @@ before_bridge = "https://www.dropbox.com/s/qkejwnr2xfosi8t/before_bridge.zip?dl=
 
 urls = [center1, center2, curve, reverse, dirt_curve, dirt_curve2, dirt_curve3, dirt_curve4, before_bridge]
 
+
 if not os.path.exists("/opt/data"):
     subprocess.call(["mkdir", "/opt/data"])
 for url in urls:
@@ -25,3 +27,4 @@ for url in urls:
     subprocess.call(["curl", "-o", "/opt/data/"+f_name, url, "-J", "-L"])
     subprocess.call(["unzip", "/opt/data/"+f_name, "-d", "/opt/data"])
 #     subprocess.call(["tar", "-xvzf", "/opt/data/"+f_name, "--directory", "/opt/data"])
+
