@@ -4,6 +4,7 @@ import subprocess
 import cv2
 parent_dir = "/opt"
 def makeFlippedData(og_folder_name):
+    print("flipping", og_folder_name)
     # og_folder_name = "dirt_curve"
     og_folder_path = "{}/data/{}".format(parent_dir, og_folder_name)
     new_folder_path = "{}/data/flipped_{}".format(parent_dir, og_folder_name)
@@ -40,4 +41,6 @@ def makeFlippedData(og_folder_name):
             writer.writerow(line)
         newfile.close()
         
-makeFlippedData("dirt_curve")
+folder_names = ["center1", "center2", "curve", "reverse", "dirt_curve", "dirt_curve2", "dirt_curve3", "dirt_curve4", "before_bridge"]
+for name in folder_names:
+    makeFlippedData(name)
