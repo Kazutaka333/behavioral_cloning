@@ -19,12 +19,13 @@ before_bridge = "https://www.dropbox.com/s/qkejwnr2xfosi8t/before_bridge.zip?dl=
 
 urls = [center1, center2, curve, reverse, dirt_curve, dirt_curve2, dirt_curve3, dirt_curve4, before_bridge]
 
-
-if not os.path.exists("/opt/data"):
-    subprocess.call(["mkdir", "/opt/data"])
+parent_dir = "/opt/"
+if not os.path.exists(parent_dir+"data"):
+    subprocess.call(["mkdir", parent_dir+"data"])
 for url in urls:
     f_name = url.split("/")[-1][:-5]
-    subprocess.call(["curl", "-o", "/opt/data/"+f_name, url, "-J", "-L"])
-    subprocess.call(["unzip", "/opt/data/"+f_name, "-d", "/opt/data"])
+    subprocess.call(["curl", "-o", parent_dir+"data/"+f_name, url, "-J", "-L"])
+    subprocess.call(["unzip", parent_dir+"data/"+f_name, "-d", parent_dir+"data"])
 #     subprocess.call(["tar", "-xvzf", "/opt/data/"+f_name, "--directory", "/opt/data"])
+subprocess.call(['python', 'flip.py'])
 

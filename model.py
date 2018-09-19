@@ -83,19 +83,20 @@ model = Sequential()
 model.add(Cropping2D(cropping=((40,20),(0, 0)), input_shape=(160, 320, 3)))
 model.add(Lambda(lambda x: x/127.5-1.))
 model.add(Conv2D(5, (5, 5)))
+model.add(Dropout(0.5))
 model.add(Activation('relu'))
-# model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(10, (5, 5)))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Flatten())
 model.add(Dense(100))
+model.add(Dropout(0.25))
 model.add(Activation('relu'))
 model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
 
-epochs = 5
+epochs = 3
 model.fit_generator(train_generator,
                     samples_per_epoch=len(train_samples),
                     validation_data=valid_generator,
@@ -103,7 +104,7 @@ model.fit_generator(train_generator,
                     epochs=epochs)
 
 model.save('model_f'+str(len(folder_names))+'_adj'+str(adjust_const)+'_DF'+str(division_factor)+'_e'+str(epochs)+'_.h5')
-          
+
     
     
    

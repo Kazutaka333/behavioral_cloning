@@ -2,12 +2,12 @@ import csv
 import os
 import subprocess
 import cv2
-parent_dir = "/opt"
+parent_dir = "/opt/"
 def makeFlippedData(og_folder_name):
     print("flipping", og_folder_name)
     # og_folder_name = "dirt_curve"
-    og_folder_path = "{}/data/{}".format(parent_dir, og_folder_name)
-    new_folder_path = "{}/data/flipped_{}".format(parent_dir, og_folder_name)
+    og_folder_path = "{}data/{}".format(parent_dir, og_folder_name)
+    new_folder_path = "{}data/flipped_{}".format(parent_dir, og_folder_name)
     if not os.path.exists(new_folder_path):
         subprocess.call(["mkdir", new_folder_path])
     if not os.path.exists("{}/IMG".format(new_folder_path)):
@@ -21,9 +21,9 @@ def makeFlippedData(og_folder_name):
             center_name = line[0].split("/")[-1]
             left_name = line[1].split("/")[-1]
             right_name = line[2].split("/")[-1]
-            center_path = "{}/data/{}".format(parent_dir, "/".join(line[0].split("/")[-3:]))
-            left_path = "{}/data/{}".format(parent_dir, "/".join(line[1].split("/")[-3:]))
-            right_path = "{}/data/{}".format(parent_dir, "/".join(line[2].split("/")[-3:]))
+            center_path = "{}data/{}".format(parent_dir, "/".join(line[0].split("/")[-3:]))
+            left_path = "{}data/{}".format(parent_dir, "/".join(line[1].split("/")[-3:]))
+            right_path = "{}data/{}".format(parent_dir, "/".join(line[2].split("/")[-3:]))
             center_flipped = cv2.flip(cv2.imread(center_path), 1)
             left_flipped = cv2.flip(cv2.imread(left_path), 1)
             right_flipped = cv2.flip(cv2.imread(right_path), 1)
