@@ -19,7 +19,7 @@ before_bridge = "https://www.dropbox.com/s/qkejwnr2xfosi8t/before_bridge.zip?dl=
 
 urls = [center1, center2, curve, reverse, dirt_curve, dirt_curve2, dirt_curve3, dirt_curve4, before_bridge]
 
-parent_dir = "/opt/"
+parent_dir = "/home/carnd/"
 if not os.path.exists(parent_dir+"data"):
     subprocess.call(["mkdir", parent_dir+"data"])
 for url in urls:

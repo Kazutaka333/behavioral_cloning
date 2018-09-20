@@ -2,7 +2,7 @@ import csv
 import os
 import subprocess
 import cv2
-parent_dir = "/opt/"
+parent_dir = "/home/carnd/"
 def makeFlippedData(og_folder_name):
     print("flipping", og_folder_name)
     # og_folder_name = "dirt_curve"
