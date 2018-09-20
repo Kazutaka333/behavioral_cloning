@@ -1,10 +1,6 @@
 import csv
 
 lines = []
-# TODO: add data augmentation
-# folder_names = ['center1', 'center2', 'center3', 'reverse', 'recovery', 'curve']
-# folder_names = ['center1', 'center2', 'reverse', 'curve', 'dirt_curve', 'flipped_dirt_curve']
-# folder_names = ['center1', 'center2', 'reverse', 'curve', 'dirt_curve', 'dirt_curve2', 'dirt_curve3','before_bridge']
 folder_names = ['center1', 
                 'center2', 
                 'reverse',
@@ -27,10 +23,12 @@ folder_names = ['center1',
                 'center2', 
                 'reverse',
                 'curve', 
+                'recovery'
                 'flipped_center1',
                 'flipped_center2',
                 'flipped_reverse',
-                'flipped_curve']
+                'flipped_curve',
+                'flipped_recovery']
 division_factor = 4
 parent_dir = "/home/carnd/"
 for f_name in folder_names:
