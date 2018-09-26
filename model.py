@@ -29,7 +29,7 @@ folder_names = ['center2',
                 'flipped_reverse',
                 'flipped_curve2',
                 'flipped_recovery' ]
-division_factor = 9
+division_factor = 1
 parent_dir = "/home/carnd/"
 for f_name in folder_names:
 # for f_name in folder_names[]:
@@ -77,7 +77,7 @@ from keras.layers import Flatten, Dense, Conv2D, Activation, Cropping2D, Lambda,
 import subprocess
 
 model = Sequential()
-model.add(Cropping2D(cropping=((40,20),(0, 0)), input_shape=(160, 320, 3)))
+model.add(Cropping2D(cropping=((50,20),(0, 0)), input_shape=(160, 320, 3)))
 model.add(Lambda(lambda x: x/127.5-1.))
 model.add(Conv2D(5, (5, 5)))
 model.add(Activation('relu'))
@@ -95,7 +95,7 @@ model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
 
-epochs = 1
+epochs = 10
 model.fit(X_train, y_train, validation_split=0.2, shuffle=True, epochs=epochs)
 model_file_name = './model/model_f'+str(len(folder_names))+'_adj'+str(adjust_const)+'_DF'+str(division_factor)+'_e'+str(epochs)+'_.h5'
 model.save(model_file_name)
