@@ -42,5 +42,6 @@ def makeFlippedData(og_folder_name):
         newfile.close()
         
 folder_names = ["center1", "center2", "curve", "reverse", "dirt_curve", "dirt_curve2", "dirt_curve3", "dirt_curve4", "before_bridge", "recovery"]
+folder_names = ["center3", "curve2"]
 for name in folder_names:
     makeFlippedData(name)

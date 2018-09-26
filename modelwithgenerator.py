@@ -19,17 +19,17 @@ folder_names = ['center1',
                 'flipped_dirt_curve3',
                 'flipped_dirt_curve4',
                 'flipped_before_bridge']
-folder_names = ['center2', 
-                'center3', 
+folder_names = ['center1', 
+                'center2', 
                 'reverse',
-                'curve2', 
+                'curve', 
                 'recovery',
+                'flipped_center1',
                 'flipped_center2',
-                'flipped_center3',
                 'flipped_reverse',
-                'flipped_curve2',
-                'flipped_recovery' ]
-division_factor = 9
+                'flipped_curve',
+                'flipped_recovery']
+division_factor = 6
 parent_dir = "/home/carnd/"
 for f_name in folder_names:
 # for f_name in folder_names[]:
@@ -40,7 +40,7 @@ for f_name in folder_names:
             if i%division_factor == 0:
                 lines.append(line)
                 # add left and right image
-                adjust_const = 2.5
+                adjust_const = 1.9
                 left_line = [line[1], *line[1:3], str(float(line[3])+adjust_const), *line[4:]]
                 right_line = [line[2], *line[1:3], str(float(line[3])-adjust_const), *line[4:]]
                 #lines.append(left_line)
@@ -55,7 +55,6 @@ print("number of data:", len(lines))
 import cv2
 import numpy as np
 import sklearn
-import scipy
 
 
 
@@ -63,7 +62,7 @@ images = []
 angles = []
 for line in lines:
     current_path = parent_dir+"data/{}".format("/".join(line[0].split("/")[-3:]))
-    image = scipy.misc.imread(current_path)
+    image = cv2.imread(current_path)
     images.append(image)
     angle = float(line[3])
     angles.append(angle)
@@ -95,26 +94,12 @@ model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
 
-epochs = 1
+epochs = 10
 model.fit(X_train, y_train, validation_split=0.2, shuffle=True, epochs=epochs)
 model_file_name = './model/model_f'+str(len(folder_names))+'_adj'+str(adjust_const)+'_DF'+str(division_factor)+'_e'+str(epochs)+'_.h5'
 model.save(model_file_name)
-
-import datetime
-date = datetime.datetime.now()
-
-with open('log.txt', 'a') as logfile:
-    logfile.write(str(date)[:-10] + " " + model_file_name + '\n')
-    logfile.write("data: " + str(folder_names) + '\n')
-    logfile.write("division factor: " + str(division_factor) + '\n')
-    logfile.write("adjustment constant: " + str(adjust_const) + '\n')
-    logfile.write("cpochs: " + str(epochs) + '\n')
-    model.summary(print_fn=lambda x: logfile.write(x + '\n'))
-    logfile.write('\n')
-    logfile.write('\n')
 
 subprocess.call(['echo', '-en', '\007'])
 subprocess.call(['echo', '-en', '\007'])
 subprocess.call(['echo', '-en', '\007'])
 print(model_file_name)
-
