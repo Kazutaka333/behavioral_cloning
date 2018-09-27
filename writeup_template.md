@@ -1,9 +1,5 @@
 # **Behavioral Cloning** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
 **Behavioral Cloning Project**
@@ -37,8 +33,8 @@ The goals / steps of this project are the following:
 My project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
-* model.h5 containing a trained convolution neural network 
-* writeup_report.md or writeup_report.pdf summarizing the results
+* model.h5 containing a trained convolution neural network (This file can be downloaded from [here](https://www.dropbox.com/s/49zqlgtoe5s7264/model.h5?dl=1) . I coudn't include in this repo because the file size was too big.)
+* writeup.md summarizing the results
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
@@ -54,23 +50,21 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
-
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+My model consists of 4 convolutional layers, two fully connected layer and dropout layer inbetween fully connected ones. (model.py line 60-72) I chose relu as activation function and use Lambda function to normalize iamge data. (model.py line 59)
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+The model contains dropout layers in order to reduce overfitting (model.py lines 70). 
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 78). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 74).
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used two different version of center lane driving, recovering from the left and right sides of the road, center lane driving to the opposite way, driving on each curve, and mirrored images of all kinds.
 
 For details about how I created the training data, see the next section. 
 
@@ -78,21 +72,40 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+The overall strategy for deriving a model architecture was to modify the architecture I used for traffict sign classifier as I need.
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+My first step was to use a convolution neural network model similar to the LeNet. I thought this model might be appropriate because the model has relatively less number of layer, which means faster training time and I wanted to build a model that works and to modify it layer. With a smaller model, a bug is easier to be spoted too.
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+As I increase the number of training data, model.fit() function started to yeild a resource exhaustion error, which required me to implement generator function and use fit_generator(). This slows down training too.
+Since I have dropout layer initially, I did not see the huge gap between validation loss and training loss.
 
-To combat the overfitting, I modified the model so that ...
+The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track. To improve the model, I added new data of driving where the car drove off. This shows some improvement but other part started failing.
+The final epochs I used was 10, as the loss did not go down after 10 epochs.
+I've also tried more data, less data, different cropping, and etc ...
+Finally, I've used up all the avilable hours on workspace. Even though I got 25 hours more, I imagined I could end up use it all again, since I wasn't really seeing consistent improvment on my model. Then I've tried Google Colab, which runs much faster due to the larger memory it has. However, it turns out that the model created on Colab causes an error with drive.py. Then I moved on to aws, which also had enough memory for me to use only model.fit(). I was able to train much faster pace and to try many different pattern of variables. However, my model drove very wiggly and can never make on the curve where there is dirt road connected. Then, I realized that I'm reading image as BGR not RGB. This was the source of my poor model. After fixiting it, my model turns out to drive very good.
 
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+Also, since there are so many variation of parameters and data, I wrote code to leave log after each training, (model.py line 86-93) so that I can reflect on what works and what not.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 #### 2. Final Model Architecture
+
+My model has the following structure.
+
+| Layer          		|     Description	 | 
+|:-----------------:|:------------------------------------------------------:| 
+| Input          		| 160x320x3 RGB image | 
+| Convolution 5x5 	| 1x1 stride, 5 depth, valid padding |
+| RELU	            | |
+| Convolution 5x5	  | 1x1 stride, 10 depth, valid padding	|
+| RELU              | |
+| Convolution 5x5	  | 1x1 stride, 20 depth, valid padding	|
+| RELU              | |
+| Convolution 5x5	  | 1x1 stride, 30 depth, valid padding	|
+| Fully connected		| outputs 100 |
+| Dropout           | 50% keep probability |
+| RELU					    | |
+| Fully connected		| outputs 1 |
 
 The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
 
