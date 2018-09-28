@@ -121,15 +121,15 @@ Then I also captured data from driving the same track in the opposite way.
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
 As curves are more challenging part and relatively less data in the above center lane driving data, I've recorded more data focusing on only curves. The followings are a few examples.
-![alt text][curve1]
-![alt text][curve2]
-![alt text][curve3]
+
+![alt text][curve1] ![alt text][curve2] ![alt text][curve3]
 
 Then finally I collected data where a car drive toward the center lane from the off lane.
 
 ![][recovery1]
 ![][recovery2]
 ![][recovery3]
+
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
 ![alt text][image6]
