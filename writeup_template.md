@@ -14,13 +14,14 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[center]: ./writeup_images/center.jpg
+[reverse]: ./writeup_images/reverse.jpg
+[curve1]: ./writeup_images/curve1.jpg
+[curve2]: ./writeup_images/curve2.jpg
+[curve3]: ./writeup_images/curve3.jpg
+[recovery1]: ./writeup_images/recovery1.jpg
+[recovery2]: ./writeup_images/recovery2.jpg
+[recovery3]: ./writeup_images/recovery3.jpg
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -92,8 +93,8 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 My model has the following structure.
 
-| Layer          		|     Description	 | 
-|:-----------------:|:------------------------------------------------------:| 
+| Layer          		| Description | 
+|:-----------------:|:----------------------------------:| 
 | Input          		| 160x320x3 RGB image | 
 | Convolution 5x5 	| 1x1 stride, 5 depth, valid padding |
 | RELU	            | |
@@ -107,26 +108,28 @@ My model has the following structure.
 | RELU					    | |
 | Fully connected		| outputs 1 |
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![alt text][image2]
+![alt text][center]
+
+Then I also captured data from driving the same track in the opposite way.
+
+![alt text][reverse]
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+As curves are more challenging part and relatively less data in the above center lane driving data, I've recorded more data focusing on only curves. The followings are a few examples.
+![alt text][curve1]
+![alt text][curve2]
+![alt text][curve3]
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
+Then finally I collected data where a car drive toward the center lane from the off lane.
 
-Then I repeated this process on track two in order to get more data points.
-
+![][recovery1]
+![][recovery2]
+![][recovery3]
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
 ![alt text][image6]
