@@ -135,15 +135,14 @@ Then finally I collected data where a car drive toward the center lane from the 
 |:------------------:|:------------------:|:----------------:| 
 
 To create augmented the data set for the sake of more generalized model, I flipped images and angles as if a car drive in the mirrored world.
-
-![alt text][original]
-![alt text][flipped]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+| original | flipped |
+|:------------------:|:--------------:| 
+|![alt text][original] | ![alt text][flipped] | 
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+After the collection process, I had 18046 number of data points. I then preprocessed this data by cropping off 50x320 from the top and 20x320 from the bottom part of the image.
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 10 as evidenced by the fact that 20 and 30 epochs did not show dramatic improvement. I used an adam optimizer so that manually training the learning rate wasn't necessary.
