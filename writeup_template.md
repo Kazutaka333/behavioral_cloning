@@ -22,6 +22,8 @@ The goals / steps of this project are the following:
 [recovery1]: ./writeup_images/recovery1.jpg
 [recovery2]: ./writeup_images/recovery2.jpg
 [recovery3]: ./writeup_images/recovery3.jpg
+[flipped]: ./writeup_images/flipped.jpg
+[original]: ./writeup_images/original.jpg
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -132,10 +134,10 @@ Then finally I collected data where a car drive toward the center lane from the 
 |![][recovery1]|![][recovery2]|![][recovery3]|
 |:------------------:|:------------------:|:----------------:| 
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+To create augmented the data set for the sake of more generalized model, I flipped images and angles as if a car drive in the mirrored world.
 
-![alt text][image6]
-![alt text][image7]
+![alt text][original]
+![alt text][flipped]
 
 Etc ....
 
