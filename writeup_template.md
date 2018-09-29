@@ -135,9 +135,10 @@ Then finally I collected data where a car drive toward the center lane from the 
 |:------------------:|:------------------:|:----------------:| 
 
 To create augmented the data set for the sake of more generalized model, I flipped images and angles as if a car drive in the mirrored world.
+
 | original | flipped |
 |:------------------:|:--------------:| 
-|![alt text][original] | ![alt text][flipped] | 
+| ![alt text][original] | ![alt text][flipped] | 
 
 
 After the collection process, I had 18046 number of data points. I then preprocessed this data by cropping off 50x320 from the top and 20x320 from the bottom part of the image.
