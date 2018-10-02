@@ -14,10 +14,9 @@ dirt_curve4 = "https://www.dropbox.com/s/84zb1o4502ed3b5/dirt_curve4.zip?dl=1"
 before_bridge = "https://www.dropbox.com/s/qkejwnr2xfosi8t/before_bridge.zip?dl=1"
 recovery = "https://www.dropbox.com/s/q3jm8rux3skhur3/recovery.zip?dl=1"
 
-urls = [center1, center2, curve, reverse, dirt_curve, dirt_curve2, dirt_curve3, dirt_curve4, before_bridge, recovery]
-urls = [center3, curve2]
+urls = [center2, center3, curve2, reverse, recovery]
 
-parent_dir = "/home/carnd/"
+parent_dir = "/Users/Kazutaka/Downloads/"
 if not os.path.exists(parent_dir+"data"):
     subprocess.call(["mkdir", parent_dir+"data"])
 for url in urls:

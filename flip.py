@@ -2,7 +2,7 @@ import csv
 import os
 import subprocess
 import cv2
-parent_dir = "/home/carnd/"
+parent_dir = "/Users/Kazutaka/Downloads/"
 def makeFlippedData(og_folder_name):
     print("flipping", og_folder_name)
     # og_folder_name = "dirt_curve"
@@ -41,7 +41,6 @@ def makeFlippedData(og_folder_name):
             writer.writerow(line)
         newfile.close()
         
-folder_names = ["center1", "center2", "curve", "reverse", "dirt_curve", "dirt_curve2", "dirt_curve3", "dirt_curve4", "before_bridge", "recovery"]
-folder_names = ["center3", "curve2"]
+folder_names = ["curve2", "reverse", "recovery"]
 for name in folder_names:
     makeFlippedData(name)
