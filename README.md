@@ -34,7 +34,7 @@ My project includes the following files:
 * model.h5 containing a trained convolution neural network (This file can be downloaded from [here](https://www.dropbox.com/s/49zqlgtoe5s7264/model.h5?dl=1) . I coudn't include in this repo because the file size was too big.)
 * writeup.md summarizing the results
 
-#### How to run this program
+### How to run this program
 
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
